@@ -1,0 +1,23 @@
+{
+  "name": "sse-http2-shared-socket",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An @Sse() request disables the idle timeout for the whole HTTP/2 connection",
+  "scripts": {
+    "control": "ts-node src/repro.ts",
+    "sse": "ts-node src/repro.ts sse"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.2.3",
+    "@nestjs/core": "11.2.3",
+    "@nestjs/platform-fastify": "11.2.3",
+    "fastify": "5.11.3",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  }
+}
