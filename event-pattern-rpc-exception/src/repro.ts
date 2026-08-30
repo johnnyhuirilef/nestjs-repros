@@ -22,6 +22,15 @@ import { throwError } from 'rxjs';
 const PORT = 8899;
 
 let customFilterRan = false;
+let nestReportedCount = 0;
+
+// Count what Nest itself writes, so this script shows the result on any
+// version instead of asserting one.
+const realStderr = process.stderr.write.bind(process.stderr);
+process.stderr.write = ((chunk: any, ...rest: any[]) => {
+  if (String(chunk).includes('RpcExceptionsHandler')) nestReportedCount++;
+  return realStderr(chunk, ...rest);
+}) as typeof process.stderr.write;
 
 @Catch(RpcException)
 class AlertingFilter implements RpcExceptionFilter<RpcException> {
@@ -101,7 +110,15 @@ async function main() {
   client.emit('evt.filtered', {}).subscribe();
   await wait(300);
   console.log(`  custom filter executed: ${customFilterRan}`);
-  console.log('  ...but nothing above reported the failure');
+
+  console.log('\n=== RESULT ===');
+  const eventRpcReports = nestReportedCount - 1; // case B always reports
+  console.log(`  RpcException reports from event handlers: ${eventRpcReports} (cases C and D)`);
+  console.log(
+    eventRpcReports === 2
+      ? '  FIXED: both event handlers reported the failure.'
+      : '  BUG: the failure was discarded with no signal.',
+  );
 
   await client.close();
   await app.close();

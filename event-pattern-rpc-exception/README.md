@@ -30,7 +30,10 @@ npm run repro
 === D) @EventPattern + RpcException, with a custom filter ===
   [filter] custom filter ran, wants to alert: order sync failed
   custom filter executed: true
-  ...but nothing above reported the failure
+
+=== RESULT ===
+  RpcException reports from event handlers: 0 (cases C and D)
+  BUG: the failure was discarded with no signal.
 ```
 
 `unhandledRejection` and `uncaughtException` are both listened for, and neither
@@ -65,10 +68,31 @@ go.
 A plain `Error` only surfaces because `handleUnknownError` logs as a side effect
 before returning the same unsubscribed observable.
 
+## Verifying a fix
+
+The script counts what Nest writes, thus it shows the result on any version.
+With nestjs/nest#17634 applied, cases C and D report the exception with a stack
+trace that points at the handler:
+
+```
+=== C) @EventPattern throwing RpcException ===
+  [filter] custom filter ran, wants to alert: event failed
+[Nest] ERROR [RpcExceptionsHandler] RpcException [Error]: event failed
+    at AppController.evtRpc (src/repro.ts:46:11)
+
+=== RESULT ===
+  RpcException reports from event handlers: 2 (cases C and D)
+  FIXED: both event handlers reported the failure.
+```
+
+Cases A and B do not change.
+
 ## Who runs into this
 
-Anyone using `@EventPattern` with `RpcException`. It is transport-independent,
-since it lives in the shared `Server` base class.
+Anyone using `@EventPattern` with `RpcException` on a transport that uses the
+base `handleEvent`: TCP, Redis, NATS, MQTT and RabbitMQ. Kafka overrides
+`handleEvent` and awaits the stream, thus the error already reaches its caller
+there.
 
 ## Versions
 
