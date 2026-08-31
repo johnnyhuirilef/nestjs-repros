@@ -1,0 +1,23 @@
+{
+  "name": "mqtt-listen-callback-reconnect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ServerMqtt runs the listen() callback again on every broker reconnect",
+  "scripts": {
+    "repro": "ts-node src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.0.1",
+    "@nestjs/core": "12.0.1",
+    "@nestjs/microservices": "12.0.1",
+    "aedes": "0.51.3",
+    "mqtt": "5.15.2",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  }
+}
