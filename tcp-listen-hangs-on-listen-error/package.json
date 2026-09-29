@@ -1,0 +1,21 @@
+{
+  "name": "tcp-listen-hangs-on-listen-error",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ServerTCP never settles listen() when the listen error is not EADDRINUSE or ECONNREFUSED",
+  "scripts": {
+    "repro": "ts-node src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.1.1",
+    "@nestjs/core": "12.1.1",
+    "@nestjs/microservices": "12.1.1",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  }
+}
