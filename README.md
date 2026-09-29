@@ -13,3 +13,4 @@ versions, and a README with the exact commands and the output to expect.
 | [`event-pattern-rpc-exception`](./event-pattern-rpc-exception) | *(pending)* | An `RpcException` thrown from an `@EventPattern` handler is discarded with no log, no client error and no rejection |
 | [`nats-publish-throw-leak`](./nats-publish-throw-leak) | *(pending)* | `ClientNats` leaves the reply-inbox subscription behind when `publish()` throws, e.g. for a payload above `max_payload` |
 | [`tcp-listen-hangs-on-listen-error`](./tcp-listen-hangs-on-listen-error) | *(pending)* | `ServerTCP` only passes `EADDRINUSE`/`ECONNREFUSED` to the listen callback, so `await app.listen()` hangs forever on `EACCES`, `EADDRNOTAVAIL` and every other listen error |
+| [`rmq-client-duplicate-channel`](./rmq-client-duplicate-channel) | *(pending)* | `ClientRMQ` creates its channel twice on the first connect, so every client holds a second, orphaned channel (and a second consumer on a named `replyQueue`) |
