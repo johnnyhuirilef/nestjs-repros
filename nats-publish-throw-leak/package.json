@@ -1,0 +1,22 @@
+{
+  "name": "nats-publish-throw-leak",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ClientNats leaves the reply-inbox subscription behind when publish() throws",
+  "scripts": {
+    "repro": "ts-node src/repro.ts"
+  },
+  "dependencies": {
+    "@nats-io/transport-node": "3.4.0",
+    "@nestjs/common": "12.1.1",
+    "@nestjs/core": "12.1.1",
+    "@nestjs/microservices": "12.1.1",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  }
+}
