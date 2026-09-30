@@ -1,0 +1,22 @@
+{
+  "name": "nats-client-non-json-reply-crash",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A non-JSON reply crashes the process that runs ClientNats and leaves the request pending",
+  "scripts": {
+    "repro": "ts-node src/repro.ts"
+  },
+  "dependencies": {
+    "@nats-io/transport-node": "3.4.0",
+    "@nestjs/common": "12.1.2",
+    "@nestjs/core": "12.1.2",
+    "@nestjs/microservices": "12.1.2",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  }
+}
