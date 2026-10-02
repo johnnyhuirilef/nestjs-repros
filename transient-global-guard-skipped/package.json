@@ -1,0 +1,22 @@
+{
+  "name": "transient-global-guard-skipped",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A global APP_GUARD with transient scope never runs on controllers and microservice handlers, so the handler runs unguarded",
+  "scripts": {
+    "repro": "ts-node src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.1.2",
+    "@nestjs/core": "12.1.2",
+    "@nestjs/microservices": "12.1.2",
+    "@nestjs/platform-express": "12.1.2",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  }
+}
