@@ -1,0 +1,26 @@
+{
+  "name": "client-custom-deserializer-crash",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A custom deserializer that rejects a reply crashes the process that runs the TCP, Redis, MQTT and RMQ clients",
+  "scripts": {
+    "repro": "ts-node src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.1.2",
+    "@nestjs/core": "12.1.2",
+    "@nestjs/microservices": "12.1.2",
+    "amqp-connection-manager": "5.0.0",
+    "amqplib": "2.2.0",
+    "ioredis": "6.0.0",
+    "mqtt": "5.16.0",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/amqplib": "0.10.8",
+    "@types/node": "22.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  }
+}
