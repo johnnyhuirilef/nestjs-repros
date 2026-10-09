@@ -1,0 +1,23 @@
+{
+  "name": "observe-null-prototype-provider",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "@nestjs/observe: a method call on a provider without a constructor (an ESM namespace) throws TypeError",
+  "scripts": {
+    "repro": "tsx src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.1.2",
+    "@nestjs/core": "12.1.2",
+    "@nestjs/observe": "0.3.7",
+    "@nestjs/platform-express": "12.1.2",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "tsx": "4.23.15",
+    "typescript": "5.7.2"
+  }
+}
