@@ -1,0 +1,25 @@
+{
+  "name": "observe-promise-members-lost",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "@nestjs/observe: a provider method that returns a Promise with extra members (got, p-cancelable) loses them",
+  "scripts": {
+    "repro": "tsx src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.1.2",
+    "@nestjs/core": "12.1.2",
+    "@nestjs/observe": "0.3.7",
+    "@nestjs/platform-express": "12.1.2",
+    "got": "16.0.0",
+    "p-cancelable": "4.0.1",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "tsx": "4.23.15",
+    "typescript": "5.7.2"
+  }
+}
