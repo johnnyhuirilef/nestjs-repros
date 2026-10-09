@@ -52,6 +52,29 @@ case calls the handler more than 3 times, schedules no retry, and leaves
 4 seconds, and it keeps growing as long as the process runs. The exact number
 varies a little between runs.
 
+## Run it on a real PostgreSQL server
+
+The default run uses PGlite. To use a real PostgreSQL server, you need Docker.
+The `compose.yaml` file starts `postgres:18.6` on `127.0.0.1:55433`. The script
+uses it when `DATABASE_URL` is set. The `repro:pg` script sets that variable
+for you. Each run drops the `nest_outbox` schema first, so every run starts
+clean.
+
+```bash
+docker compose up -d --wait
+npm run repro:pg
+docker compose down -v
+```
+
+The output has the same shape. Only the store error text differs, because the
+server is real:
+
+```
+first one:       Outbox store fail failed: error: invalid input syntax for type json
+```
+
+To use another server, set your own URL: `DATABASE_URL=postgres://... npm run repro:pg`.
+
 ## Why it happens
 
 Line numbers are from `nestjs/outbox` at `02d9c8c`.
@@ -79,7 +102,7 @@ await client.query('select $1::jsonb', ['"\\ud83d"']);   // invalid input syntax
 ## Versions
 
 `@nestjs/outbox` 0.1.1 · `@nestjs/common` 12.1.2 · `@nestjs/core` 12.1.2 ·
-`@electric-sql/pglite` 0.5.8 · `drizzle-orm` 0.45.4 · `tsx` 4.23.15 · Node 24
+`@electric-sql/pglite` 0.5.8 · `drizzle-orm` 0.45.4 · `pg` 8.23.1 · `postgres` 18.6 · `tsx` 4.23.15 · Node 24
 
 `tsx` does not emit decorator metadata, so the handler injects its dependency
 with an explicit `@Inject()`.
