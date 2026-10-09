@@ -1,0 +1,24 @@
+{
+  "name": "outbox-unstorable-error-loop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "@nestjs/outbox Postgres store: a handler error with a lone surrogate or U+0000 makes the message loop forever",
+  "scripts": {
+    "repro": "tsx src/repro.ts"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "@nestjs/common": "12.1.2",
+    "@nestjs/core": "12.1.2",
+    "@nestjs/outbox": "0.1.1",
+    "drizzle-orm": "0.45.4",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "tsx": "4.23.15",
+    "typescript": "5.7.2"
+  }
+}
