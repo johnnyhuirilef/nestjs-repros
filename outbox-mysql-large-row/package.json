@@ -1,0 +1,23 @@
+{
+  "name": "outbox-mysql-large-row",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "@nestjs/outbox MySQL store: add() fails with 'Out of sort memory' for a message over about 250 KB",
+  "scripts": {
+    "repro": "DATABASE_URL=${DATABASE_URL:-mysql://root:root@127.0.0.1:53306/outbox_repro} tsx src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.1.2",
+    "@nestjs/core": "12.1.2",
+    "@nestjs/outbox": "0.1.1",
+    "mysql2": "3.24.5",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "tsx": "4.23.15",
+    "typescript": "5.7.2"
+  }
+}
