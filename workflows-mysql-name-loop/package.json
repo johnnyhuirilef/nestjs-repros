@@ -1,0 +1,25 @@
+{
+  "name": "workflows-mysql-name-loop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "@nestjs/workflows MySQL store: a name over the column limit makes the instance re-run forever",
+  "scripts": {
+    "repro": "MYSQL_URL=${MYSQL_URL:-mysql://root:root@127.0.0.1:53307} POSTGRES_URL=${POSTGRES_URL:-postgres://postgres:postgres@127.0.0.1:55437/postgres} tsx src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.1.2",
+    "@nestjs/core": "12.1.2",
+    "@nestjs/workflows": "0.0.2",
+    "mysql2": "3.24.5",
+    "pg": "8.23.1",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "@types/pg": "8.11.10",
+    "tsx": "4.23.15",
+    "typescript": "5.7.2"
+  }
+}
