@@ -1,0 +1,23 @@
+{
+  "name": "fastify-raw-response-cookies",
+  "version": "1.0.0",
+  "private": true,
+  "description": "On the Fastify adapter, setCookie() drops a cookie that a middleware wrote on the raw response, and the header helpers throw on the raw response, while Express keeps and accepts both",
+  "scripts": {
+    "repro": "ts-node src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.1.3",
+    "@nestjs/core": "12.1.3",
+    "@nestjs/platform-express": "12.1.3",
+    "@nestjs/platform-fastify": "12.1.3",
+    "fastify": "5.12.5",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  }
+}
