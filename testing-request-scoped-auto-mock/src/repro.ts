@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { Injectable, Scope } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 
 /**
  * `useMocker()` mocks a dependency that no module provides. Since 11.1.20 it
@@ -31,50 +31,61 @@ class RequestWithTransient {
   constructor(public readonly transient: TransientService) {}
 }
 
+const MOCK = { mocked: true };
+const EXPECTED = JSON.stringify(MOCK);
+
 const CASES = [
   {
     name: 'DEFAULT consumer, moduleRef.get() (baseline)',
     providers: [DefaultConsumer],
-    read: async (ref: any) => ref.get(DefaultConsumer).dep,
+    read: async (ref: TestingModule) => ref.get(DefaultConsumer).dep,
   },
   {
     name: 'REQUEST consumer, moduleRef.resolve()',
     providers: [RequestConsumer],
-    read: async (ref: any) => (await ref.resolve(RequestConsumer)).dep,
+    read: async (ref: TestingModule) => (await ref.resolve(RequestConsumer)).dep,
   },
   {
     name: 'REQUEST consumer -> TRANSIENT provider, moduleRef.resolve()',
     providers: [RequestWithTransient, TransientService],
-    read: async (ref: any) =>
-      (await ref.resolve(RequestWithTransient)).transient?.dep,
+    read: async (ref: TestingModule) =>
+      (await ref.resolve(RequestWithTransient)).transient.dep,
   },
 ];
 
-async function main() {
-  let failed = 0;
-  for (const { name, providers, read } of CASES) {
-    let result: string;
-    try {
-      const moduleRef = await Test.createTestingModule({ providers })
-        .useMocker(() => ({ mocked: true }))
-        .compile();
-      result = JSON.stringify(await read(moduleRef));
-    } catch (err) {
-      result = `throws: ${(err as Error).message.split('\n')[0]}`;
-    }
-    const ok = result === '{"mocked":true}';
-    if (!ok) failed++;
-    console.log(`=== ${name} ===`);
-    console.log(`  expected: {"mocked":true}`);
-    console.log(`  got:      ${result}\n`);
+async function injectedDep({ providers, read }: (typeof CASES)[number]) {
+  try {
+    const moduleRef = await Test.createTestingModule({ providers })
+      .useMocker(() => MOCK)
+      .compile();
+    return JSON.stringify(await read(moduleRef));
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return `throws: ${message.split('\n')[0]}`;
   }
+}
+
+async function main() {
+  const results = await Promise.all(
+    CASES.map(async testCase => ({
+      name: testCase.name,
+      got: await injectedDep(testCase),
+    })),
+  );
+  const failed = results.filter(({ got }) => got !== EXPECTED).length;
+
+  results.forEach(({ name, got }) => {
+    console.log(`=== ${name} ===`);
+    console.log(`  expected: ${EXPECTED}`);
+    console.log(`  got:      ${got}\n`);
+  });
   console.log('=== RESULT ===');
   console.log(
-    failed
-      ? `  BUG: ${failed} of ${CASES.length} cases did not get the mock.`
-      : '  FIXED: every case got the mock.',
+    failed === 0
+      ? '  FIXED: every case got the mock.'
+      : `  BUG: ${failed} of ${CASES.length} cases did not get the mock.`,
   );
-  process.exitCode = failed ? 1 : 0;
+  process.exitCode = failed === 0 ? 0 : 1;
 }
 
 main();
