@@ -1,0 +1,23 @@
+{
+  "name": "fastify-redirect-non-ascii-url",
+  "version": "1.0.0",
+  "private": true,
+  "description": "On the Fastify adapter, @Redirect() with a non-ASCII URL responds 500 ERR_INVALID_CHAR and other URLs go out unencoded, while Express encodes the Location header",
+  "scripts": {
+    "repro": "ts-node src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.2.0",
+    "@nestjs/core": "12.2.0",
+    "@nestjs/platform-express": "12.2.0",
+    "@nestjs/platform-fastify": "12.2.0",
+    "fastify": "5.12.7",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  }
+}
