@@ -31,6 +31,7 @@ When a reproduction needs a database or a broker, it has its own
 | [`testing-request-scoped-auto-mock`](./testing-request-scoped-auto-mock) | [#18160](https://github.com/nestjs/nest/issues/18160) | Since 11.1.20, `useMocker()` no longer mocks the missing dependency of a request-scoped provider resolved with `moduleRef.resolve()`, directly or through a transient provider, so the call throws "Nest can't resolve dependencies", while a default-scope provider still gets the mock |
 | [`fastify-raw-response-cookies`](./fastify-raw-response-cookies) | [#18174](https://github.com/nestjs/nest/issues/18174) | On the Fastify adapter, `setCookie()` drops a cookie that a middleware wrote on the raw response, and `setHeader()`, `appendHeader()` and `setCookie()` throw on the raw response that a middleware receives, while Express keeps and accepts both |
 | [`fastify-redirect-non-ascii-url`](./fastify-redirect-non-ascii-url) | [#18207](https://github.com/nestjs/nest/issues/18207) | On the Fastify adapter, `@Redirect('/文档')` responds 500 `ERR_INVALID_CHAR` and other URLs go out unencoded, while Express encodes the `Location` header |
+| [`fastify-object-non-json-content-type`](./fastify-object-non-json-content-type) | *(pending)* | On the Fastify adapter, returning an object with `@Header('Content-Type', 'text/plain')` responds 500 `FST_ERR_REP_INVALID_PAYLOAD_TYPE`, while Express sends the object as JSON with that `Content-Type` |
 
 ## Other packages
 

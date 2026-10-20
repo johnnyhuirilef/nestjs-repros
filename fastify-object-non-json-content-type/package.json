@@ -1,0 +1,23 @@
+{
+  "name": "fastify-object-non-json-content-type",
+  "version": "1.0.0",
+  "private": true,
+  "description": "On the Fastify adapter, a handler that returns an object with a Content-Type that is not JSON responds 500 FST_ERR_REP_INVALID_PAYLOAD_TYPE, while Express sends the object as JSON with that Content-Type",
+  "scripts": {
+    "repro": "ts-node src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.2.0",
+    "@nestjs/core": "12.2.0",
+    "@nestjs/platform-express": "12.2.0",
+    "@nestjs/platform-fastify": "12.2.0",
+    "fastify": "5.12.7",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  }
+}
