@@ -1,0 +1,17 @@
+{
+  "name": "outbox-subscriber-error-crash",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An OutboxEvents subscriber that throws crashes the process, because the relay's try/catch around emit() never sees the error that rxjs and diagnostics_channel rethrow later",
+  "scripts": {
+    "repro": "node src/repro.mjs"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.2.0",
+    "@nestjs/core": "12.2.0",
+    "@nestjs/outbox": "0.1.2",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  }
+}
