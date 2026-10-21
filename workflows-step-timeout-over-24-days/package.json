@@ -1,0 +1,22 @@
+{
+  "name": "workflows-step-timeout-over-24-days",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "@nestjs/workflows: a step timeout or heartbeatTimeout longer than about 24.8 days fails every attempt at once",
+  "scripts": {
+    "repro": "tsx --no-warnings src/repro.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.2.0",
+    "@nestjs/core": "12.2.0",
+    "@nestjs/workflows": "0.0.3",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "tsx": "4.23.15",
+    "typescript": "5.7.2"
+  }
+}
