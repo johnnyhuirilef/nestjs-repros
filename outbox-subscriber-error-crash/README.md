@@ -85,7 +85,7 @@ it replaces `OutboxEvents` with an object whose `emit()` throws at once.
 
 `@nestjs/webhooks` uses the same two mechanisms and documents this on its
 `emit()`: "Catch errors inside your subscribers"
-([`webhooks-events.service.ts:14-17`](https://github.com/nestjs/webhooks/blob/2ae465bccc38409c134c46b7426a336c085aeab0/lib/events/webhooks-events.service.ts#L14-L17)).
+([`webhooks-events.service.ts:15-18`](https://github.com/nestjs/webhooks/blob/2ae465bccc38409c134c46b7426a336c085aeab0/lib/events/webhooks-events.service.ts#L15-L18)).
 
 ## Versions
 
