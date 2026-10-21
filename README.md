@@ -35,6 +35,7 @@ When a reproduction needs a database or a broker, it has its own
 | [`fastify-cors-middleware-error`](./fastify-cors-middleware-error) | [#18212](https://github.com/nestjs/nest/issues/18212) | On the Fastify adapter, a response that a Nest middleware ends with an error has no CORS headers of `enableCors()`, and a CORS preflight responds with the error of the middleware, while Express sends the CORS headers and answers the preflight with `204` |
 | [`express-payload-too-large-filter`](./express-payload-too-large-filter) | [#18213](https://github.com/nestjs/nest/issues/18213) | On the Express adapter, a body that is too large reaches a global exception filter as a raw `PayloadTooLargeError`, so the "Catch everything" filter of the docs responds 500 and a `@Catch(HttpException)` filter does not run, while Fastify gives both filters an `HttpException` with 413 |
 | [`webhooks-failing-since-same-batch`](./webhooks-failing-since-same-batch) | [nestjs/webhooks#42](https://github.com/nestjs/webhooks/issues/42) | In `@nestjs/webhooks`, a success does not reset the failure clock of an endpoint when a failure to the same endpoint came first in the same worker batch, so a healthy endpoint can be disabled as `failing` |
+| [`idempotency-multipart-fingerprint`](./idempotency-multipart-fingerprint) | [nestjs/docs.nestjs.com#3645](https://github.com/nestjs/docs.nestjs.com/pull/3645) | In `@nestjs/idempotency`, the fingerprint does not include a multipart body, so a reused key with a different file replays the first response instead of a 422 |
 
 ## Other packages
 
