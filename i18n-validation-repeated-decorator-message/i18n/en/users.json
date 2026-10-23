@@ -1,0 +1,4 @@
+{
+  "passwordDigit": "The password needs a digit.",
+  "passwordUppercase": "The password needs an uppercase letter."
+}
