@@ -1,0 +1,18 @@
+{
+  "name": "resilience-breaker-ignores-route-timeout",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A circuit breaker inside a service policy does not count the timeouts of the route that calls it, when the route's timeout is the shorter one",
+  "scripts": {
+    "repro": "node src/repro.mjs"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.2.0",
+    "@nestjs/core": "12.2.0",
+    "@nestjs/platform-express": "12.2.0",
+    "@nestjs/resilience": "0.0.2",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  }
+}
