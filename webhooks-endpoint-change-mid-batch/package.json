@@ -1,0 +1,18 @@
+{
+  "name": "webhooks-endpoint-change-mid-batch",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The webhooks worker reads an endpoint once per batch, so a disable, a delete, a URL change or a secret rotation during the batch does not apply to its later deliveries",
+  "scripts": {
+    "repro": "node src/repro.mjs"
+  },
+  "dependencies": {
+    "@nestjs/common": "12.2.0",
+    "@nestjs/core": "12.2.0",
+    "@nestjs/outbox": "0.1.3",
+    "@nestjs/webhooks": "0.0.3",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  }
+}
