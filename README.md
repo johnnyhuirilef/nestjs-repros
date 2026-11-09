@@ -81,6 +81,7 @@ When there is no issue, the link goes to the pull request that fixed it.
 | [`workflows-result-wait-ignores-timeout-during-read`](./workflows-result-wait-ignores-timeout-during-read) | `@nestjs/workflows` | [workflows#55](https://github.com/nestjs/workflows/issues/55) | `result()` and `startAndWait()` reject after a slow store read returns, not when their `timeout` passes or their `signal` aborts |
 | [`ai-filter-observable-result`](./ai-filter-observable-result) | `@nestjs/ai` | [ai#21](https://github.com/nestjs/ai/issues/21) | An agent function's exception filter that returns an Observable (`throwError()`, `BaseRpcExceptionFilter`, `of()`) gives the model `{}` instead of what the filter answered |
 | [`ai-durable-repeated-tool-call-id`](./ai-durable-repeated-tool-call-id) | `@nestjs/ai` | [ai#23](https://github.com/nestjs/ai/issues/23) | A durable run loses the approval of a later tool call that reuses an id (TGI gives every tool call the id `"0"`), so the call never runs and the run waits forever |
+| [`ai-call-timeout-under-resilience`](./ai-call-timeout-under-resilience) | `@nestjs/ai` | [ai#25](https://github.com/nestjs/ai/issues/25) | A call's `timeout` and `retry` are ignored when the model or the `defaults` set `resilience`, so the call waits as long as the shared policy lets it |
 
 ## Adding a reproduction
 
