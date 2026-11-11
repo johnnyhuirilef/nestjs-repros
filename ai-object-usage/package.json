@@ -1,0 +1,16 @@
+{
+  "name": "ai-object-usage",
+  "private": true,
+  "type": "module",
+  "scripts": { "repro": "node probe.mjs" },
+  "dependencies": {
+    "@nestjs/ai": "0.0.2",
+    "@nestjs/common": "12.4.2",
+    "@nestjs/core": "12.4.2",
+    "@nestjs/resilience": "0.0.3",
+    "ai": "7.0.169",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2",
+    "zod": "4.6.7"
+  }
+}
